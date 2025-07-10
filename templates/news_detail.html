@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title%} - {{ news.title }}{% endblock title%}
+{% block content %}
+<!-- Main Content -->
+<div class="container my-5">
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mb-4">
+                {% if news.image %}
+                    <img src="{{ news.image.url }}" class="card-img-top" alt="{{ news.title }}" style="height: 400px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h2 class="card-title fw-bold text-primary">{{ news.title }}</h2>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            Category: {{ news.category.name }} |
+                            Published: {{ news.created_at|date:"F j, Y, H:i" }}
+                        </small>
+                    </p>
+                    <hr>
+                    <p class="card-text">{{ news.text|linebreaks }}</p>
+                    <a href="{% url 'home' %}" class="btn btn-primary mt-3">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
